@@ -1,69 +1,57 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#0a0a0a]/90 backdrop-blur-md border-b border-white/5"
-          : "bg-transparent"
+        scrolled ? "bg-[#0e1726]/80 backdrop-blur-md" : ""
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="text-2xl font-black tracking-widest gradient-text">
-          FORGE
-        </Link>
+      <div className="max-w-[1440px] mx-auto px-[150px] py-[56px] flex items-center justify-between">
+        <Image
+          src="/assets/forge-logo.png"
+          alt="FORGE"
+          width={60}
+          height={17}
+          className="object-contain"
+          priority
+        />
 
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-white/60">
-          <a href="#products" className="hover:text-white transition-colors">Products</a>
-          <a href="#features" className="hover:text-white transition-colors">Technology</a>
-          <a href="#about" className="hover:text-white transition-colors">About</a>
-          <a href="#contact" className="hover:text-white transition-colors">Contact</a>
-        </div>
-
-        <div className="hidden md:flex items-center gap-4">
+        <div className="flex items-center gap-10">
           <a
-            href="#products"
-            className="px-5 py-2 rounded-full bg-[#ff5000] text-white text-sm font-semibold hover:bg-[#ff6a1a] transition-colors"
+            href="#features"
+            className="text-[#e8e4dc] text-base hover:text-white transition-colors"
+            style={{ fontFamily: "var(--font-exo2)" }}
           >
-            Shop Now
+            Features
+          </a>
+          <a
+            href="#specs"
+            className="text-[#e8e4dc] text-base hover:text-white transition-colors"
+            style={{ fontFamily: "var(--font-exo2)" }}
+          >
+            Specs
+          </a>
+          <a
+            href="#preorder"
+            className="bg-[#d4ef3b] text-[#1c1c1e] text-base font-bold px-5 py-[10px] rounded-[5px] hover:brightness-110 transition-all"
+            style={{ fontFamily: "var(--font-exo2)" }}
+          >
+            Own it first
           </a>
         </div>
-
-        <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
-          <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
-          <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
-        </button>
       </div>
-
-      {menuOpen && (
-        <div className="md:hidden bg-[#0a0a0a]/95 backdrop-blur-md border-t border-white/5 px-6 py-6 flex flex-col gap-4 text-sm font-medium text-white/70">
-          <a href="#products" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Products</a>
-          <a href="#features" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Technology</a>
-          <a href="#about" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">About</a>
-          <a href="#contact" onClick={() => setMenuOpen(false)} className="hover:text-white transition-colors">Contact</a>
-          <a href="#products" onClick={() => setMenuOpen(false)} className="mt-2 px-5 py-2.5 rounded-full bg-[#ff5000] text-white text-center font-semibold hover:bg-[#ff6a1a] transition-colors">
-            Shop Now
-          </a>
-        </div>
-      )}
     </nav>
   );
 }

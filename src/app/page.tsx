@@ -1,10 +1,10 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Products from "@/components/Products";
-import Features from "@/components/Features";
-import Testimonials from "@/components/Testimonials";
-import About from "@/components/About";
-import CTA from "@/components/CTA";
+import FeatureANC from "@/components/FeatureANC";
+import FeatureDualDevice from "@/components/FeatureDualDevice";
+import FeatureLatency from "@/components/FeatureLatency";
+import ColorPicker from "@/components/ColorPicker";
+import Specs from "@/components/Specs";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -13,11 +13,11 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <Products />
-        <Features />
-        <Testimonials />
-        <About />
-        <CTA />
+        <FeatureANC />
+        <FeatureDualDevice />
+        <FeatureLatency />
+        <ColorPicker />
+        <Specs />
       </main>
       <Footer />
     </>
