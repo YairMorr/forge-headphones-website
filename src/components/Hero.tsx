@@ -23,6 +23,15 @@ export default function Hero() {
         />
       </div>
 
+      {/* Top blur band — matches the navbar backdrop from the Figma design */}
+      <div
+        className="absolute top-0 left-0 right-0 h-[260px] pointer-events-none backdrop-blur-[6px] z-[1]"
+        style={{
+          WebkitMaskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
+          maskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
+        }}
+      />
+
       {/* Bottom gradient fade — blends headphone photo into background */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -46,13 +55,15 @@ export default function Hero() {
           />
         </div>
 
-        {/* ALLOY cutout */}
-        <div className="w-full max-w-[842px]">
+        {/* ALLOY cutout — locked to natural 842×199 SVG aspect ratio */}
+        <div className="w-full max-w-[842px]" style={{ aspectRatio: "842 / 199" }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/assets/alloy-text.svg"
             alt="ALLOY"
-            className="w-full h-auto"
+            width={842}
+            height={199}
+            className="w-full h-full"
           />
         </div>
 
