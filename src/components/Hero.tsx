@@ -9,20 +9,19 @@ export default function Hero() {
           "radial-gradient(ellipse 140% 100% at 50% 0%, #0a244d 0%, #0e1726 60%)",
       }}
     >
-      {/* Noise texture — inline SVG so feGaussianBlur / feTurbulence actually render */}
+      {/* Noise texture — Multi type, size 8.9, density 100%, opacity 15% (from Figma) */}
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none z-[1]"
         xmlns="http://www.w3.org/2000/svg"
-        style={{ opacity: 0.07, mixBlendMode: "overlay" }}
+        style={{ opacity: 0.15, mixBlendMode: "overlay" }}
       >
-        <filter id="hero-noise-filter">
+        <filter id="hero-noise-filter" x="0%" y="0%" width="100%" height="100%">
           <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.65"
-            numOctaves="3"
+            type="turbulence"
+            baseFrequency="0.11"
+            numOctaves="1"
             stitchTiles="stitch"
           />
-          <feColorMatrix type="saturate" values="0" />
         </filter>
         <rect width="100%" height="100%" filter="url(#hero-noise-filter)" />
       </svg>
