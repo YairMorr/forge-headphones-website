@@ -9,8 +9,34 @@ export default function Hero() {
           "radial-gradient(ellipse 140% 100% at 50% 0%, #0a244d 0%, #0e1726 60%)",
       }}
     >
-      {/* Headphone photo — bleeds from top */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[79%] max-w-[1136px] pointer-events-none select-none"
+      {/* Noise texture overlay — fractal noise at low opacity to match Figma grain */}
+      <div
+        className="absolute inset-0 pointer-events-none z-[1]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")`,
+          backgroundRepeat: "repeat",
+          backgroundSize: "200px 200px",
+          opacity: 0.04,
+          mixBlendMode: "overlay",
+        }}
+      />
+
+      {/* Blue glow — behind the headphone, blurred radial light blob */}
+      <div
+        className="absolute left-1/2 -translate-x-1/2 pointer-events-none select-none z-[0]"
+        style={{ top: "-14%", width: "88%", maxWidth: "1268px" }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/hero-glow.svg"
+          alt=""
+          className="w-full h-auto"
+        />
+      </div>
+
+      {/* Headphone photo — bleeds from top, sits above glow */}
+      <div
+        className="absolute left-1/2 -translate-x-1/2 w-[79%] max-w-[1136px] pointer-events-none select-none z-[2]"
         style={{ top: "-32px" }}
       >
         <Image
@@ -25,7 +51,7 @@ export default function Hero() {
 
       {/* Top blur band — matches the navbar backdrop from the Figma design */}
       <div
-        className="absolute top-0 left-0 right-0 h-[260px] pointer-events-none backdrop-blur-[6px] z-[1]"
+        className="absolute top-0 left-0 right-0 h-[260px] pointer-events-none backdrop-blur-[6px] z-[3]"
         style={{
           WebkitMaskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
           maskImage: "linear-gradient(to bottom, black 50%, transparent 100%)",
@@ -34,7 +60,7 @@ export default function Hero() {
 
       {/* Bottom gradient fade — blends headphone photo into background */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none z-[2]"
         style={{
           background:
             "radial-gradient(ellipse 100% 55% at 50% 10%, transparent 0%, transparent 30%, rgba(14,23,38,0.6) 55%, #0e1726 75%)",
