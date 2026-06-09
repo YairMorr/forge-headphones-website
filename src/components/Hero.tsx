@@ -9,29 +9,74 @@ export default function Hero() {
           "radial-gradient(ellipse 140% 100% at 50% 0%, #0a244d 0%, #0e1726 60%)",
       }}
     >
-      {/* Noise texture overlay — fractal noise at low opacity to match Figma grain */}
-      <div
-        className="absolute inset-0 pointer-events-none z-[1]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")`,
-          backgroundRepeat: "repeat",
-          backgroundSize: "200px 200px",
-          opacity: 0.04,
-          mixBlendMode: "overlay",
-        }}
-      />
+      {/* Noise texture — inline SVG so feGaussianBlur / feTurbulence actually render */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none z-[1]"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ opacity: 0.07, mixBlendMode: "overlay" }}
+      >
+        <filter id="hero-noise-filter">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.65"
+            numOctaves="3"
+            stitchTiles="stitch"
+          />
+          <feColorMatrix type="saturate" values="0" />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#hero-noise-filter)" />
+      </svg>
 
-      {/* Blue glow — behind the headphone, blurred radial light blob */}
+      {/* Blue glow blob — inline SVG so feGaussianBlur renders (blocked in <img>) */}
       <div
         className="absolute left-1/2 -translate-x-1/2 pointer-events-none select-none z-[0]"
-        style={{ top: "-14%", width: "88%", maxWidth: "1268px" }}
+        style={{ top: "-12%", width: "90%", maxWidth: "1268px" }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/assets/hero-glow.svg"
-          alt=""
+        <svg
+          viewBox="0 0 1267.84 1383.12"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
           className="w-full h-auto"
-        />
+          overflow="visible"
+        >
+          <g filter="url(#hero-glow-blur)">
+            <path
+              d="M942.593 352.517C879.128 263.666 743.131 231.027 630.708 227.4C518.284 227.4 451.192 267.292 393.167 303.558C335.142 339.824 262.61 434.115 235.411 570.111C208.211 706.108 255.357 845.731 300.689 936.395C346.021 1027.06 342.395 1139.48 409.486 1153.99C476.578 1168.5 534.603 1086.9 618.014 1086.9C701.426 1086.9 773.957 1150.36 822.916 1139.48C871.875 1128.6 882.754 1070.58 926.273 1007.11C969.792 943.648 1006.06 836.664 1033.26 707.921C1060.46 579.178 1006.06 441.368 942.593 352.517Z"
+              fill="url(#hero-glow-gradient)"
+            />
+          </g>
+          <defs>
+            <filter
+              id="hero-glow-blur"
+              x="5.1856e-06"
+              y="0"
+              width="1267.84"
+              height="1383.12"
+              filterUnits="userSpaceOnUse"
+              colorInterpolationFilters="sRGB"
+            >
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
+              <feBlend
+                mode="normal"
+                in="SourceGraphic"
+                in2="BackgroundImageFix"
+                result="shape"
+              />
+              <feGaussianBlur stdDeviation="113.45" />
+            </filter>
+            <radialGradient
+              id="hero-glow-gradient"
+              cx="0"
+              cy="0"
+              r="1"
+              gradientUnits="userSpaceOnUse"
+              gradientTransform="translate(633.918 691.558) rotate(-133.408) scale(377.392 377.392)"
+            >
+              <stop stopColor="#A3C1F2" />
+              <stop offset="1" stopColor="#1E6AE1" />
+            </radialGradient>
+          </defs>
+        </svg>
       </div>
 
       {/* Headphone photo — bleeds from top, sits above glow */}
@@ -49,7 +94,7 @@ export default function Hero() {
         />
       </div>
 
-      {/* Top blur band — matches the navbar backdrop from the Figma design */}
+      {/* Top blur band */}
       <div
         className="absolute top-0 left-0 right-0 h-[260px] pointer-events-none backdrop-blur-[6px] z-[3]"
         style={{
@@ -58,7 +103,7 @@ export default function Hero() {
         }}
       />
 
-      {/* Bottom gradient fade — blends headphone photo into background */}
+      {/* Bottom gradient fade */}
       <div
         className="absolute inset-0 pointer-events-none z-[2]"
         style={{
