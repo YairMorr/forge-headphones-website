@@ -103,12 +103,12 @@ export default function Hero() {
         }}
       />
 
-      {/* Bottom gradient fade */}
+      {/* Bottom gradient fade — covers glow bleed in lower half */}
       <div
         className="absolute inset-0 pointer-events-none z-[2]"
         style={{
           background:
-            "radial-gradient(ellipse 100% 55% at 50% 10%, transparent 0%, transparent 30%, rgba(14,23,38,0.6) 55%, #0e1726 75%)",
+            "linear-gradient(to bottom, transparent 40%, rgba(14,23,38,0.7) 65%, #0e1726 80%)",
         }}
       />
 
