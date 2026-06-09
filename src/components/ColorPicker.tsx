@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import Image from "next/image"; // used for headphone PNGs
 
 const colors = [
   {
@@ -21,8 +21,8 @@ const colors = [
     status: "REACTIVE",
     swatch: "#c4622a",
     border: false,
-    bg: "radial-gradient(ellipse 100% 100% at 50% 50%, #c4622a 0%, #9a3f18 40%, #3a1a0a 80%, #0e1726 100%)",
-    img: "/assets/headphone-blue.png",
+    bg: "radial-gradient(ellipse 100% 100% at 50% 50%, #ff9356 0%, #d67740 25%, #ad5a2b 50%, #853e15 75%, #5c2100 100%)",
+    img: "/assets/headphone-orange.png",
   },
   {
     name: "Ingot Green",
@@ -31,8 +31,8 @@ const colors = [
     status: "STABLE",
     swatch: "#d4ef3b",
     border: false,
-    bg: "radial-gradient(ellipse 100% 100% at 50% 50%, #8abf2a 0%, #5a8a10 40%, #2a4a08 80%, #0e1726 100%)",
-    img: "/assets/headphone-blue.png",
+    bg: "radial-gradient(ellipse 100% 100% at 50% 50%, #a6bd23 0%, #8b9f1c 25%, #719115 50%, #576414 75%, #3d4607 100%)",
+    img: "/assets/headphone-green.png",
   },
   {
     name: "Ember Dark",
@@ -41,8 +41,8 @@ const colors = [
     status: "COOLING",
     swatch: "#443762",
     border: false,
-    bg: "radial-gradient(ellipse 100% 100% at 50% 50%, #443762 0%, #2a1f45 40%, #150e28 80%, #0e1726 100%)",
-    img: "/assets/headphone-blue.png",
+    bg: "radial-gradient(ellipse 100% 100% at 50% 50%, #6645b2 0%, #523695 25%, #3f2678 50%, #2b175a 75%, #17073d 100%)",
+    img: "/assets/headphone-purple.png",
   },
 ];
 
@@ -57,11 +57,10 @@ export default function ColorPicker() {
     >
       {/* FORGE logo watermark behind headphone */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-20">
-        <Image
-          src="/assets/forge-logo.png"
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/forge-logo.svg"
           alt=""
-          width={320}
-          height={90}
           className="w-64 lg:w-80 object-contain"
         />
       </div>

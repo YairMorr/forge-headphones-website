@@ -1,8 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
-
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
@@ -19,13 +17,13 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-[1440px] mx-auto px-[150px] py-[56px] flex items-center justify-between">
-        <Image
-          src="/assets/forge-logo.png"
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/forge-logo.svg"
           alt="FORGE"
           width={60}
           height={17}
           className="object-contain"
-          priority
         />
 
         <div className="flex items-center gap-10">

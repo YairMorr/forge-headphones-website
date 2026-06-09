@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function Footer() {
   return (
     <footer
@@ -7,8 +5,9 @@ export default function Footer() {
       style={{ background: "#0e1726" }}
     >
       <div className="max-w-[1440px] mx-auto px-[150px] py-16 flex items-center justify-between">
-        <Image
-          src="/assets/forge-logo.png"
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/assets/forge-logo.svg"
           alt="FORGE"
           width={60}
           height={17}

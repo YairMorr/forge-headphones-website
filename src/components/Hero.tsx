@@ -36,8 +36,9 @@ export default function Hero() {
       <div className="relative z-10 flex flex-col items-center text-center w-full px-6 mt-[38vh]">
         {/* FORGE small wordmark above ALLOY */}
         <div className="mb-3">
-          <Image
-            src="/assets/forge-logo.png"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/assets/forge-logo.svg"
             alt="FORGE"
             width={80}
             height={22}
@@ -47,13 +48,11 @@ export default function Hero() {
 
         {/* ALLOY cutout */}
         <div className="w-full max-w-[842px]">
-          <Image
-            src="/assets/alloy-text.png"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/assets/alloy-text.svg"
             alt="ALLOY"
-            width={842}
-            height={199}
             className="w-full h-auto"
-            priority
           />
         </div>
 
