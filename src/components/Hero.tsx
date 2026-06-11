@@ -13,14 +13,21 @@ export default function Hero() {
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none z-[1]"
         xmlns="http://www.w3.org/2000/svg"
-        style={{ opacity: 0.15, mixBlendMode: "overlay" }}
+        style={{ opacity: 0.15, mixBlendMode: "soft-light" }}
       >
-        <filter id="hero-noise-filter" x="0%" y="0%" width="100%" height="100%">
+        <filter id="hero-noise-filter" x="0%" y="0%" width="100%" height="100%" colorInterpolationFilters="sRGB">
           <feTurbulence
             type="turbulence"
             baseFrequency="0.11"
-            numOctaves="1"
+            numOctaves="2"
             stitchTiles="stitch"
+            result="turbulence"
+          />
+          {/* Force full opacity so the soft-light blend reads at full strength */}
+          <feColorMatrix
+            in="turbulence"
+            type="matrix"
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0 1"
           />
         </filter>
         <rect width="100%" height="100%" filter="url(#hero-noise-filter)" />
