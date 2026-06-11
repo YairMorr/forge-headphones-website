@@ -33,10 +33,10 @@ export default function Hero() {
         <rect width="100%" height="100%" filter="url(#hero-noise-filter)" />
       </svg>
 
-      {/* Blue glow blob — inline SVG so feGaussianBlur renders (blocked in <img>); sits above noise */}
+      {/* Blue glow blob — inline SVG so feGaussianBlur renders (blocked in <img>); screen blend so noise shows through it */}
       <div
         className="absolute left-1/2 -translate-x-1/2 pointer-events-none select-none z-[1]"
-        style={{ top: "-12%", width: "90%", maxWidth: "1268px" }}
+        style={{ top: "-12%", width: "90%", maxWidth: "1268px", mixBlendMode: "screen" }}
       >
         <svg
           viewBox="0 0 1267.84 1383.12"
