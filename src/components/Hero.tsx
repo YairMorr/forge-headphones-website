@@ -9,9 +9,9 @@ export default function Hero() {
           "radial-gradient(ellipse 140% 100% at 50% 0%, #0a244d 0%, #0e1726 60%)",
       }}
     >
-      {/* Noise texture — Multi type, size 8.9, density 100%, opacity 15% (from Figma) */}
+      {/* Noise texture — bottom-most layer, sits behind the glow and headphone */}
       <svg
-        className="absolute inset-0 w-full h-full pointer-events-none z-[1]"
+        className="absolute inset-0 w-full h-full pointer-events-none z-0"
         xmlns="http://www.w3.org/2000/svg"
         style={{ opacity: 0.15, mixBlendMode: "soft-light" }}
       >
@@ -33,9 +33,9 @@ export default function Hero() {
         <rect width="100%" height="100%" filter="url(#hero-noise-filter)" />
       </svg>
 
-      {/* Blue glow blob — inline SVG so feGaussianBlur renders (blocked in <img>) */}
+      {/* Blue glow blob — inline SVG so feGaussianBlur renders (blocked in <img>); sits above noise */}
       <div
-        className="absolute left-1/2 -translate-x-1/2 pointer-events-none select-none z-[0]"
+        className="absolute left-1/2 -translate-x-1/2 pointer-events-none select-none z-[1]"
         style={{ top: "-12%", width: "90%", maxWidth: "1268px" }}
       >
         <svg
