@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import VideoPromo from "@/components/VideoPromo";
+import TransitionToFeatures from "@/components/TransitionToFeatures";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
       <main>
         <Hero />
         <VideoPromo />
+        <TransitionToFeatures />
       </main>
       <Footer />
     </>
