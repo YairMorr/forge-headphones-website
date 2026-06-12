@@ -1,6 +1,29 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 export default function Navbar() {
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    let lastY = window.scrollY;
+
+    const onScroll = () => {
+      const y = window.scrollY;
+      setHidden(y > lastY && y > 80);
+      lastY = y;
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
+        hidden ? "-translate-y-full" : "translate-y-0"
+      }`}
+    >
       <div className="max-w-[1440px] mx-auto px-[150px] py-[56px] flex items-center justify-between">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
