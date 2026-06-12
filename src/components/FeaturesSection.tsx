@@ -36,8 +36,8 @@ export default function FeaturesSection() {
   return (
     <section className="relative bg-[#1c1c1e]">
       {/* Sticky title slider */}
-      <div className="sticky top-0 h-dvh hidden lg:flex items-center pointer-events-none z-20">
-        <div className="relative ml-[67px] flex flex-col justify-between h-[55vh] pointer-events-auto">
+      <div className="sticky top-0 h-0 hidden lg:block pointer-events-none z-20">
+        <div className="absolute left-[67px] top-[50vh] -translate-y-1/2 flex flex-col justify-between h-[55vh] pointer-events-auto">
           <div className="absolute left-[5px] top-0 bottom-0 w-px bg-[#3a3a3c]" />
 
           {/* Active title — always on top */}
