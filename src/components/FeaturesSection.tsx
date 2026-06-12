@@ -30,33 +30,48 @@ export default function FeaturesSection() {
     return () => observer.disconnect();
   }, []);
 
+  const activeFeature = features[active];
+  const inactiveFeatures = features.filter((_, i) => i !== active);
+
   return (
     <section className="relative bg-[#1c1c1e]">
       {/* Sticky title slider */}
       <div className="sticky top-0 h-dvh hidden lg:flex items-center pointer-events-none z-20">
-        <div className="relative ml-[67px] flex flex-col gap-24 pointer-events-auto">
-          <div className="absolute left-[5px] -top-24 -bottom-24 w-px bg-[#3a3a3c]" />
-          {features.map((feature, i) => (
-            <a
-              key={feature.id}
-              href={`#${feature.id}`}
-              className="relative flex items-center gap-[18px] pl-[18px]"
+        <div className="relative ml-[67px] flex flex-col justify-between h-[55vh] pointer-events-auto">
+          <div className="absolute left-[5px] top-0 bottom-0 w-px bg-[#3a3a3c]" />
+
+          {/* Active title — always on top */}
+          <a
+            href={`#${activeFeature.id}`}
+            className="relative flex items-center gap-[18px] pl-[18px]"
+          >
+            <span className="absolute left-0 h-px w-[11px]" style={{ background: "#e8e4dc" }} />
+            <span
+              className="text-base whitespace-nowrap"
+              style={{ fontFamily: "var(--font-exo2)", color: "#e8e4dc" }}
             >
-              <span
-                className="absolute left-0 h-px w-[11px] transition-colors duration-300"
-                style={{ background: active === i ? "#e8e4dc" : "#3a3a3c" }}
-              />
-              <span
-                className="text-base whitespace-nowrap transition-colors duration-300"
-                style={{
-                  fontFamily: "var(--font-exo2)",
-                  color: active === i ? "#e8e4dc" : "#3a3a3c",
-                }}
+              {activeFeature.label}
+            </span>
+          </a>
+
+          {/* Inactive titles — grouped at the bottom */}
+          <div className="flex flex-col gap-6">
+            {inactiveFeatures.map((feature) => (
+              <a
+                key={feature.id}
+                href={`#${feature.id}`}
+                className="relative flex items-center gap-[18px] pl-[18px]"
               >
-                {feature.label}
-              </span>
-            </a>
-          ))}
+                <span className="absolute left-0 h-px w-[11px]" style={{ background: "#3a3a3c" }} />
+                <span
+                  className="text-base whitespace-nowrap"
+                  style={{ fontFamily: "var(--font-exo2)", color: "#3a3a3c" }}
+                >
+                  {feature.label}
+                </span>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -66,7 +81,7 @@ export default function FeaturesSection() {
           sectionRefs.current[0] = el;
         }}
         id="noise-cancellation"
-        className="relative min-h-[150dvh] flex items-center overflow-hidden"
+        className="relative min-h-[100dvh] flex items-center overflow-hidden"
       >
         <Image
           src="/assets/headphone-feature-large.png"
@@ -102,7 +117,7 @@ export default function FeaturesSection() {
           sectionRefs.current[1] = el;
         }}
         id="multi-source"
-        className="relative min-h-[150dvh] flex items-center overflow-hidden"
+        className="relative min-h-[100dvh] flex items-center overflow-hidden"
       >
         <div className="absolute right-[8%] top-1/2 -translate-y-1/2 w-[35%] max-w-[502px] aspect-[502.14/441.31] pointer-events-none select-none">
           <Image src="/assets/headphone-feature-small.png" alt="" fill className="object-contain" />
@@ -131,7 +146,7 @@ export default function FeaturesSection() {
           sectionRefs.current[2] = el;
         }}
         id="low-latency"
-        className="relative min-h-[150dvh] flex items-center overflow-hidden"
+        className="relative min-h-[100dvh] flex items-center overflow-hidden"
       >
         <Image
           src="/assets/headphone-feature-large.png"
