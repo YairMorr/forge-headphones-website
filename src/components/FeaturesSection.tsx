@@ -89,6 +89,21 @@ export default function FeaturesSection() {
           fill
           className="object-cover object-right pointer-events-none select-none"
         />
+        {/* Ambient blue glow behind the headphone, matches Figma Ellipse */}
+        <div
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            left: "72%",
+            top: "48%",
+            width: "55%",
+            aspectRatio: "1 / 1",
+            transform: "translate(-50%, -50%)",
+            background: "radial-gradient(circle, #A3C1F2 0%, #1E6AE1 55%, transparent 100%)",
+            filter: "blur(140px)",
+            mixBlendMode: "screen",
+            opacity: 0.7,
+          }}
+        />
         <div
           className="absolute inset-0 pointer-events-none"
           style={{ background: "linear-gradient(to right, #1c1c1e 35%, transparent 70%)" }}
